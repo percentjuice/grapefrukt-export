@@ -2,7 +2,7 @@ package com.grapefrukt.support
 {
 	public class EmbeddedMovieClips
 	{
-		[Embed(source="./assets/robot_02.swf", mimeType="application/octet-stream")]
+		[Embed(source="./assets/robot_no_timeline_code.swf", mimeType="application/octet-stream")]
 		public static const TESTMC_ROBOT:Class;
 
 		private var getAssetClass:Function;

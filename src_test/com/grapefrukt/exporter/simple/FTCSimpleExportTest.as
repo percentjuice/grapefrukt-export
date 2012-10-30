@@ -27,7 +27,7 @@ package com.grapefrukt.exporter.simple
 		}
 
 		[Test]
-		public function should_export_without_error() : void
+		public function should_export_one_asset_for_each_timeline_movieclip() : void
 		{
 			var loadedClass:Class = getLoadedClassNamed("RobotCharacterMc");
 			
