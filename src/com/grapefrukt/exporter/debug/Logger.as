@@ -48,7 +48,7 @@ package com.grapefrukt.exporter.debug {
 		}
 		
 		public static function log(source:String, message:String, description:String = "", severity:int = DEBUG):void {
-			trace(source, message, description)
+			trace(source, message, description);
 			dispatcher.dispatchEvent(new LogEvent(severity, source, message, description));
 		}
 		

@@ -83,12 +83,12 @@ package com.grapefrukt.exporter.extractors {
 		}
 		
 		public static function extractSingle(name:String, target:DisplayObject):VectorTexture {
-			if (!_swf) throw new Error("No SWF bytecode parsed, run init() first")
+			if (!_swf) throw new Error("No SWF bytecode parsed, run init() first");
 			
 			var name:String = getQualifiedClassName(target);
 			for (var i:int = 0; i < _symbols.length; i++) {
 				if (_symbols[i].name == name) {
-					var shapeTag:TagDefineShape = getSymbolShapeDefinition(_symbols[i])
+					var shapeTag:TagDefineShape = getSymbolShapeDefinition(_symbols[i]);
 					
 					var zindex:uint = 0;
 					if (target.parent) zindex = target.parent.getChildIndex(target);

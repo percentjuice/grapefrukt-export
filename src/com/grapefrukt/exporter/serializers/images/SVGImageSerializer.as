@@ -41,8 +41,8 @@ package com.grapefrukt.exporter.serializers.images {
 		private var _exporter:SVGShapeExporter;
 		
 		public function SVGImageSerializer() {
-			if(!VectorExtractor.swf) throw new Error("Could not access swf bytecode, please initialize VectorExtractor before instantiating this class.")
-			_exporter = new SVGShapeExporter(VectorExtractor.swf)
+			if(!VectorExtractor.swf) throw new Error("Could not access swf bytecode, please initialize VectorExtractor before instantiating this class.");
+			_exporter = new SVGShapeExporter(VectorExtractor.swf);
 		}
 		
 		public function serialize(texture:TextureBase):ByteArray {

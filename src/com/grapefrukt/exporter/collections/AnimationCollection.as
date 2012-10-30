@@ -47,7 +47,7 @@ package com.grapefrukt.exporter.collections {
 		}
 		
 		public function sort():void {
-			_collection = _collection.sort(_sort)
+			_collection = _collection.sort(_sort);
 		}
 		
 		private function _sort(x:Animation, y:Animation):Number {

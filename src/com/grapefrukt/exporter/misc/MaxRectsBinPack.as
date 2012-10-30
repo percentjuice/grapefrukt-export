@@ -16,11 +16,10 @@
 package com.grapefrukt.exporter.misc
 {
 	import flash.display.Shape;
-	import flash.utils.getTimer;
 	import flash.events.Event;
-	import flash.display.DisplayObject;
 	import flash.events.EventDispatcher;
 	import flash.geom.Rectangle;
+	import flash.utils.getTimer;
 
 	public class MaxRectsBinPack extends EventDispatcher
 	{

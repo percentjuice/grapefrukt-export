@@ -46,7 +46,7 @@ package com.grapefrukt.exporter.extractors {
 				children = ChildFinder.findSingle(sheet);
 			}
 			
-			ChildFinder.filter(sheet, children, ignore)
+			ChildFinder.filter(sheet, children, ignore);
 			
 			return children;
 		}

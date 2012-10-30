@@ -39,6 +39,7 @@ package com.grapefrukt.exporter.textures {
 		
 		public function VectorTexture(name:String, zIndex:int, shapeTag:TagDefineShape) {
 			super(name, zIndex, false);
+			_name = name;
 			_shapeTag = shapeTag;
 		}
 		

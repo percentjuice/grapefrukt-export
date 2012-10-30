@@ -4,11 +4,11 @@ package com.grapefrukt.exporter.settings {
 	 * @author Martin Jonasson, m@grapefrukt.com
 	 */
 	public class Settings {
-		
+
 		/**
-		 * Experimental property to change the global scale of all exports. Use with caution.
+		 * Any method with a convertPixelsToPoints set TRUE causes coordinates to be multiplied by this amount.
 		 */
-		public static var scaleFactor:Number = 1;
+		public static var conversionFactor:Number = .5;
 		
 		/**
 		 * This many pixels will be added to the measured size of the DisplayObject when rendered to a bitmap (these may not be empty due to rounding off errors and antialias)
@@ -39,7 +39,7 @@ package com.grapefrukt.exporter.settings {
 		 * The separator used for sheets/texture filenames. use a slash (default) to get folders.
 		 * Setting it to "_" would give: sheetname_texturename.png
 		 */
-		public static var directorySeparator:String = "/";
+		public static var directorySeparator:String = "_";
 		
 		/**
 		 * These are the chars that will be extracted if none are specified

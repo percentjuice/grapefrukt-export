@@ -1,8 +1,4 @@
-*.swf
-.settings
-.actionScriptProperties
+*.fla
+.DS_Store
 .project
-.flexLibProperties
-*.as3proj
-obj
-build/build.properties
+.settings

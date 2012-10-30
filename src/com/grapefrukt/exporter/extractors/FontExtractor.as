@@ -42,14 +42,13 @@ package com.grapefrukt.exporter.extractors {
 	
 	public class FontExtractor {
 		
-		public static function extract(textFormat:TextFormat, characters:String = "", cols:int = 16):FontSheet {
+		public static function extract(textFormat:TextFormat, characters:String = ""):FontSheet {
 			var sprite:Sprite = new Sprite;
 			sprite.name = textFormat.font.toLowerCase();
 			
 			if (characters == "") characters = Settings.defaultFontChars;
 			var chars:Array = characters.split("");
 			
-			var count:int = 0;
 			for each(var char:String in chars) {
 				var text:TextField = new TextField;
 				text.name = char;

@@ -26,9 +26,8 @@ authors and should not be interpreted as representing official policies, either 
 or implied, of grapefrukt games.
 */
 
-﻿package com.grapefrukt.exporter.extractors {
-	
-	import adobe.utils.CustomActions;
+﻿package com.grapefrukt.exporter.extractors
+{
 	import com.grapefrukt.exporter.animations.Animation;
 	import com.grapefrukt.exporter.animations.AnimationFrame;
 	import com.grapefrukt.exporter.animations.AnimationMarker;
@@ -36,9 +35,9 @@ or implied, of grapefrukt games.
 	import com.grapefrukt.exporter.debug.Logger;
 	import com.grapefrukt.exporter.misc.Child;
 	import com.grapefrukt.exporter.settings.Settings;
-	
-	import flash.display.FrameLabel;
+
 	import flash.display.MovieClip;
+	
 	
 	/**
 	 * ...
@@ -53,7 +52,7 @@ or implied, of grapefrukt games.
 		 * @param	target	The MovieClip to extract from
 		 * @param	ignore	A list of children to ignore (Array of strings)
 		 */
-		public static function extract(list:AnimationCollection, target:MovieClip, ignore:Array = null):void {
+		public static function extract(list:AnimationCollection, target:MovieClip, ignore:Array = null, convertPixelsToPoints:Boolean=true, scaleFactor:Number=1):void {
 			Logger.log("AnimationExtractor", "extracting", target.toString());
 			var fragments:Vector.<AnimationFragment> = getFragments(target);
 			
@@ -61,7 +60,7 @@ or implied, of grapefrukt games.
 			ChildFinder.filter(target, parts, ignore);
 			
 			for each(var fragment:AnimationFragment in fragments) {
-				list.add(getAnimation(target, fragment, parts));
+				list.add(getAnimation(target, fragment, parts, convertPixelsToPoints, scaleFactor));
 			}
 		}
 		
@@ -107,8 +106,12 @@ or implied, of grapefrukt games.
 		}
 		
 		
-		private static function getAnimation(mc:MovieClip, fragment:AnimationFragment, parts:Vector.<Child>):Animation {
+		private static function getAnimation(mc:MovieClip, fragment:AnimationFragment, parts:Vector.<Child>, convertPixelsToPoints:Boolean, scaleFactor:Number):Animation {
 			var loopAt:int = -1;
+			
+			var conversionFactor:Number = 1;			
+			if (convertPixelsToPoints) conversionFactor = Settings.conversionFactor;			
+			
 			if ( fragment.loops ) loopAt = fragment.totalFrameCount - fragment.loopFrameCount - 1;
 			var animation:Animation = new Animation(fragment.name, fragment.totalFrameCount, loopAt, parts);
 			
@@ -116,9 +119,11 @@ or implied, of grapefrukt games.
 				for (var frame:int = fragment.startFrame; frame <= fragment.endFrame; frame++){
 					mc.gotoAndStop(frame);
 					if (mc[part.name]) {
-						animation.setFrame(part.name, frame - fragment.startFrame, new AnimationFrame(mc[part.name].alpha, mc[part.name].transform.matrix, Settings.scaleFactor));
+						var partX:Number = mc[part.name].x * conversionFactor;
+						var partY:Number = mc[part.name].y * conversionFactor;
+						animation.setFrame(part.name, frame - fragment.startFrame, new AnimationFrame(true, partX, partY, mc[part.name].scaleX, mc[part.name].scaleY, mc[part.name].rotation, mc[part.name].alpha, scaleFactor));
 					} else {
-						animation.setFrame(part.name, frame - fragment.startFrame, new AnimationFrame(0));
+						animation.setFrame(part.name, frame - fragment.startFrame, new AnimationFrame(false));
 					}
 				}
 			}

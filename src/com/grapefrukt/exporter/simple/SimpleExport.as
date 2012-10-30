@@ -26,17 +26,17 @@ authors and should not be interpreted as representing official policies, either 
 or implied, of grapefrukt games.
 */
 
-package com.grapefrukt.exporter.simple {
+package com.grapefrukt.exporter.simple
+{
 	import com.grapefrukt.exporter.collections.*;
 	import com.grapefrukt.exporter.debug.*;
 	import com.grapefrukt.exporter.events.FunctionQueueEvent;
-	import com.grapefrukt.exporter.extractors.*;
-	import com.grapefrukt.exporter.filters.*;
 	import com.grapefrukt.exporter.misc.*;
 	import com.grapefrukt.exporter.serializers.data.*;
 	import com.grapefrukt.exporter.serializers.files.*;
 	import com.grapefrukt.exporter.serializers.images.*;
 	import com.grapefrukt.exporter.textures.*;
+
 	import flash.display.DisplayObjectContainer;
 	import flash.events.MouseEvent;
 	
@@ -47,26 +47,31 @@ package com.grapefrukt.exporter.simple {
 	 */
 	public class SimpleExport {
 		
-		private var _queue				:FunctionQueue;
+		protected var _queue				:FunctionQueue;
 		
-		private var _texture_exporter	:TextureExporter;
+		protected var _texture_exporter	:TextureExporter;
 		
-		private var _data_serializer	:IDataSerializer;
-		private var _image_serializer	:IImageSerializer;
-		private var _file_serializer	:IFileSerializer;
+		protected var _data_serializer	:IDataSerializer;
+		protected var _image_serializer	:IImageSerializer;
+		protected var _file_serializer	:IFileSerializer;
 		
 		private var _textures			:TextureSheetCollection;
-		private var _animations			:AnimationCollection;
-		private var _fonts				:FontSheetCollection;
+		protected var _animations			:AnimationCollection;
+		protected var _fonts				:FontSheetCollection;
 		private var _gui				:SimpleExportGui;
 		
+		protected var _objectId			: String = "";
+
 		/**
 		 * Creates the SimpleExport
 		 * @param	root	The GUI elements will be added to this DisplayObjectContainer
 		 */
-		public function SimpleExport(root:DisplayObjectContainer):void {
+		public function SimpleExport(root:DisplayObjectContainer, id:String = ""):void {
 			// this class is used to call functions on a timer, not exactly necessary on these small
 			// examples, but essential for larger exports (to avoid script timeouts and keep things responsive)
+			
+			if (id.length>0) _objectId = id + "_";
+
 			_queue 				= new FunctionQueue;
 			
 			// these three classes are responsible for the output
@@ -92,7 +97,7 @@ package com.grapefrukt.exporter.simple {
 				_queue.addEventListener(FunctionQueueEvent.COMPLETE, 	handleQueueComplete);
 				
 				_gui = new SimpleExportGui;
-				_gui.addEventListener(MouseEvent.CLICK, handleClickGui)
+				_gui.addEventListener(MouseEvent.CLICK, handleClickGui);
 				_gui.x = 10;
 				_gui.y = 10;
 				
@@ -142,7 +147,7 @@ package com.grapefrukt.exporter.simple {
 				// xml file that contains all the sheet data
 				if (_textures.size) {
 					Logger.log("SimpleExport", "exporting sheet xml");
-					_file_serializer.serialize("sheets.xml", _data_serializer.serialize(_textures));
+					_file_serializer.serialize(_objectId+"sheets.xml", _data_serializer.serialize(_textures));
 				} else {
 					Logger.log("SimpleExport", "no textures to export");
 				}
@@ -150,9 +155,12 @@ package com.grapefrukt.exporter.simple {
 			
 			_queue.add(function():void {
 				
+				trace("ANIMATIONS : "+_animations);
+
 				if (_animations.size) {
 					Logger.log("SimpleExport", "exporting animation xml");
-					_file_serializer.serialize("animations.xml", _data_serializer.serialize(_animations));
+
+					_file_serializer.serialize(_objectId+"animations.xml", _data_serializer.serialize(_animations));
 				} else {
 					Logger.log("SimpleExport", "no animations to export");
 				}

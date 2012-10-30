@@ -29,8 +29,8 @@ package com.grapefrukt.exporter.serializers.files {
 			req.method = URLRequestMethod.POST;
 			req.data = zip;
 			
-			loader.addEventListener(Event.COMPLETE, handleUploadComplete)
-			loader.addEventListener(ProgressEvent.PROGRESS, handleProgress)
+			loader.addEventListener(Event.COMPLETE, handleUploadComplete);
+			loader.addEventListener(ProgressEvent.PROGRESS, handleProgress);
 			
 			loader.load(req);
 		}

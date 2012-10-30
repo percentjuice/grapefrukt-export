@@ -101,9 +101,9 @@ package com.grapefrukt.exporter.extractors {
 				var bmp:BitmapData = new BitmapData(texture.frameBounds.width, texture.frameBounds.height, true, 0x00000000);
 				
 				var mtx:Matrix = new Matrix;
-				mtx.translate(-texture.frameBounds.width * (i % Settings.defaultMultiframeCols), -texture.frameBounds.height * Math.floor(i / Settings.defaultMultiframeCols))
+				mtx.translate(-texture.frameBounds.width * (i % Settings.defaultMultiframeCols), -texture.frameBounds.height * Math.floor(i / Settings.defaultMultiframeCols));
 				
-				bmp.draw(texture.bitmap, mtx, null, null)
+				bmp.draw(texture.bitmap, mtx, null, null);
 				
 				var bounds:Rectangle = texture.frameBounds.clone();
 				bounds.x = -texture.registrationPoint.x;

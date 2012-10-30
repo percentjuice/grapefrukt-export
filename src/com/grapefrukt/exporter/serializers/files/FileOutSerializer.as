@@ -26,8 +26,8 @@ authors and should not be interpreted as representing official policies, either 
 or implied, of grapefrukt games.
 */
 
-package com.grapefrukt.exporter.serializers.files {
-	import flash.desktop.NativeApplication;
+package com.grapefrukt.exporter.serializers.files
+{
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
@@ -55,7 +55,7 @@ package com.grapefrukt.exporter.serializers.files {
 		}
 		
 		public function serialize(filename:String, data:ByteArray):void {
-			var outFile:File = _base_path.resolvePath(filename)
+			var outFile:File = _base_path.resolvePath(filename);
 			
 			if (_overwrite_style == OVERWRITE_NONE && outFile.exists) return;
 			if (_overwrite_style == OVERWRITE_DIFFERENT_SIZE && outFile.exists && outFile.size == data.length) {

@@ -26,12 +26,13 @@ authors and should not be interpreted as representing official policies, either 
 or implied, of grapefrukt games.
 */
 
-package com.grapefrukt.exporter.serializers.images {
+package com.grapefrukt.exporter.serializers.images
+{
 	import by.blooddy.crypto.image.PNGEncoder;
+
 	import com.grapefrukt.exporter.textures.BitmapTexture;
 	import com.grapefrukt.exporter.textures.TextureBase;
-	
-	import flash.display.BitmapData;
+
 	import flash.utils.ByteArray;
 	/**
 	 * ...

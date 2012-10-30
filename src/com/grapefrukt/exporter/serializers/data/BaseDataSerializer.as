@@ -36,7 +36,7 @@ package com.grapefrukt.exporter.serializers.data {
 	 */
 	public class BaseDataSerializer {
 		
-		private var _filters:Vector.<IFilter>
+		private var _filters:Vector.<IFilter>;
 		
 		public function BaseDataSerializer() {
 			_filters = new Vector.<IFilter>();

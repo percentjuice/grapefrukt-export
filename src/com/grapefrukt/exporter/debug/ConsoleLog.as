@@ -26,9 +26,9 @@ authors and should not be interpreted as representing official policies, either 
 or implied, of grapefrukt games.
 */
 
-package com.grapefrukt.exporter.debug {
+package com.grapefrukt.exporter.debug
+{
 	import flash.display.Sprite;
-	import flash.events.Event;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	
@@ -45,7 +45,6 @@ package com.grapefrukt.exporter.debug {
 		private var _width			:int;
 		private var _height			:int;
 		private var _minimum_level	:int;
-		private var _margin			:int = 5;
 		
 		/**
 		 * Creates a text window that displays all logging statements from the exporter
@@ -86,7 +85,7 @@ package com.grapefrukt.exporter.debug {
 		
 		private function timestamp():String {
 			var d:Date = new Date;
-			return "[" + zeroPad(d.getHours().toString()) + ":" + zeroPad(d.getMinutes().toString()) + ":" + zeroPad(d.getSeconds().toString()) + "] "
+			return "[" + zeroPad(d.getHours().toString()) + ":" + zeroPad(d.getMinutes().toString()) + ":" + zeroPad(d.getSeconds().toString()) + "] ";
 		}
 		
 		private static function zeroPad(string:String, len:int = 2):String {
