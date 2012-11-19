@@ -183,15 +183,5 @@ package com.grapefrukt.exporter.simple
 		{
 			return _texturesFile;
 		}
-
-		public override function get animations() : AnimationCollection
-		{
-			return _animations;
-		}
-
-		public override function get fonts() : FontSheetCollection
-		{
-			return _fonts;
-		}
 	}
 }

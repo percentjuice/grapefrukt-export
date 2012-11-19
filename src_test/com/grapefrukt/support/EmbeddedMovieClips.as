@@ -4,6 +4,9 @@ package com.grapefrukt.support
 	{
 		[Embed(source="./assets/robot_no_timeline_code.swf", mimeType="application/octet-stream")]
 		public static const TESTMC_ROBOT:Class;
+		
+		[Embed(source="./assets/test_changing_alpha.swf", mimeType="application/octet-stream")]
+		public static const TESTMC_CHANGING_ALPHA:Class;
 
 		private var getAssetClass:Function;
 		private var _assetLabels:Vector.<String>;

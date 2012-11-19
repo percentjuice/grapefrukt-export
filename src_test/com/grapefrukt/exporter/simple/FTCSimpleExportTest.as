@@ -13,23 +13,24 @@ package com.grapefrukt.exporter.simple
 
 	public class FTCSimpleExportTest extends MovieClipsLoaded
 	{
+		private static const CLASSNAME_FROM_FLA:String = "RobotCharacterMc";		
 		private static const NUM_ROBOT_PARTS:Number = 14;
 		private static const SCALE_RETINA:Number = 1;
 		private static const SCALE_NON_RETINA:Number = .5;
 		private static const COCOS_RETINA_EXT : String = "-hd";
 		
-		private static var export : FTCSimpleExport;
+		private var export : FTCSimpleExport;
 
 		[Before]
 		public function setup() : void
 		{
 			export = new FTCSimpleExport(this, "robot");
 		}
-
+		
 		[Test]
 		public function should_export_one_asset_for_each_timeline_movieclip() : void
 		{
-			var loadedClass:Class = getLoadedClassNamed("RobotCharacterMc");
+			var loadedClass:Class = getLoadedClassNamed(CLASSNAME_FROM_FLA);
 			
 			AnimationExtractor.extract(export.animations, new loadedClass(), null, true, 1);
 			var textureSheetRetina : TextureSheet = TextureExtractor.extract(new loadedClass(), null, false, null, true, SCALE_RETINA, FTCBitmapTexture, COCOS_RETINA_EXT);
@@ -49,5 +50,3 @@ package com.grapefrukt.exporter.simple
 		}
 	}
 }
-
-
