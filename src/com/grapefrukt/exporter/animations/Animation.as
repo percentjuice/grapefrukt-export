@@ -47,10 +47,11 @@ package com.grapefrukt.exporter.animations {
 		private var _mask			:String;
 		private var _framerate		:Number;
 		
-		public function Animation(name:String, frameCount:int, loopAt:int, parts:Vector.<Child>) {
+		public function Animation(name:String, frameCount:int, frameRate:int, loopAt:int, parts:Vector.<Child>) {
 			_loop_at = loopAt;
 			if (_loop_at < -1) throw new Error ("animation cannot loop on negative frames");
 			_frame_count = frameCount;
+			_framerate = frameRate;
 			_name = name;
 			
 			_parts = new Vector.<AnimationPart>();
@@ -62,9 +63,7 @@ package com.grapefrukt.exporter.animations {
 				var aw:AnimationPart = new AnimationPart(child.name);
 				_parts.push(aw);
 				_parts_dict[child.name] = aw;
-			}
-			
-			_framerate = Settings.defaultFramerate;
+			}			
 		}
 		
 		public function sort():void {

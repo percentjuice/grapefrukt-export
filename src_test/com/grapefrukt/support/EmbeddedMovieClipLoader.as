@@ -2,7 +2,7 @@ package com.grapefrukt.support
 {
 	import org.osflash.signals.Signal;
 
-	import flash.display.MovieClip;
+	import flash.display.Loader;
 	import flash.system.LoaderContext;
 
 	/**
@@ -22,7 +22,7 @@ package com.grapefrukt.support
 				loaderContext.allowCodeImport = true;
 			}
 
-			loadComplete = new Signal(Class, MovieClip);
+			loadComplete = new Signal(Class, Loader);
 			loaders = new <LoaderHandler>[];
 		}
 
@@ -33,10 +33,10 @@ package com.grapefrukt.support
 			loader.loadComplete.addOnce(loadCompleteListener);
 		}
 
-		private function loadCompleteListener(assetRequest : Class, loadedMC : MovieClip, loaderHandler : LoaderHandler) : void
+		private function loadCompleteListener(assetRequest : Class, loader:Loader, loaderHandler : LoaderHandler) : void
 		{
 			loaders.splice(loaders.indexOf(loaderHandler), 1);
-			loadComplete.dispatch(assetRequest, loadedMC);
+			loadComplete.dispatch(assetRequest, loader);
 		}
 	}
 }
@@ -47,7 +47,6 @@ import org.osflash.signals.Signal;
 import mx.core.ByteArrayAsset;
 
 import flash.display.Loader;
-import flash.display.MovieClip;
 import flash.events.Event;
 
 /**
@@ -67,7 +66,7 @@ class LoaderHandler
 		this.AssetClass = AssetClass;
 		byteArrayAssetInstance = new AssetClass();
 		loader = new Loader();
-		loadComplete = new Signal(Class, MovieClip, LoaderHandler);
+		loadComplete = new Signal(Class, Loader, LoaderHandler);
 
 		loader.contentLoaderInfo.addEventListener(Event.INIT, loadCompleteListener);
 		loader.loadBytes(byteArrayAssetInstance, EmbeddedMovieClipLoader.loaderContext);
@@ -76,8 +75,6 @@ class LoaderHandler
 	private function loadCompleteListener(event : Event) : void
 	{
 		loader.contentLoaderInfo.removeEventListener(Event.INIT, loadCompleteListener);
-		var content : MovieClip = MovieClip(loader.content);
-		loadComplete.dispatch(AssetClass, content, this);
+		loadComplete.dispatch(AssetClass, loader, this);
 	}
 }
-
