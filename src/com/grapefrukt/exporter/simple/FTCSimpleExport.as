@@ -30,6 +30,7 @@ package com.grapefrukt.exporter.simple
 	import com.grapefrukt.exporter.collections.*;
 	import com.grapefrukt.exporter.debug.*;
 	import com.grapefrukt.exporter.events.FunctionQueueEvent;
+	import com.grapefrukt.exporter.settings.Settings;
 	import com.grapefrukt.exporter.textures.*;
 
 	import flash.display.DisplayObjectContainer;
@@ -41,23 +42,25 @@ package com.grapefrukt.exporter.simple
 	{
 		private var _texturesArt : TextureSheetCollection;
 		private var _texturesFile : TextureSheetCollection;
+		private var _frameRate : Number;
 
 		/**
 		 * Creates the SimpleExport
 		 * @param	root	The GUI elements will be added to this DisplayObjectContainer
 		 */
-		public function FTCSimpleExport(root : DisplayObjectContainer, id : String = "") : void
+		public function FTCSimpleExport(root : DisplayObjectContainer, id : String = "", frameRate : Number = 0) : void
 		{
 			super(root, id);
 
+			_frameRate = frameRate;
 			_texturesArt = new TextureSheetCollection;
 			_texturesFile = new TextureSheetCollection;
 			_texture_exporter = new FTCTextureExporter(_queue, _image_serializer, _file_serializer);
 		}
-		
-		public function exportWithCompleteHandler(eventCompleteHandler:Function, autoOutput : Boolean = false):void
+
+		public function exportWithCompleteHandler(eventCompleteHandler : Function, autoOutput : Boolean = false) : void
 		{
-			_queue.addEventListener(FunctionQueueEvent.COMPLETE, eventCompleteHandler, false, 0, true);			
+			_queue.addEventListener(FunctionQueueEvent.COMPLETE, eventCompleteHandler, false, 0, true);
 			export(autoOutput);
 		}
 

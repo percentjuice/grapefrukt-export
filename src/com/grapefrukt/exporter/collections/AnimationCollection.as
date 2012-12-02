@@ -37,6 +37,7 @@ package com.grapefrukt.exporter.collections {
 	public class AnimationCollection {
 		
 		private var _collection:Vector.<Animation>;
+		private var _frameRate		:Number;
 		
 		public function AnimationCollection() {
 			_collection = new Vector.<Animation>();
@@ -78,6 +79,9 @@ package com.grapefrukt.exporter.collections {
 		public function get tail():Animation {
 			return _collection[_collection.length - 1];
 		}
+		
+		public function get frameRate():Number { return _frameRate; }
+		public function set frameRate(value:Number):void { _frameRate = value; }
 		
 	}
 

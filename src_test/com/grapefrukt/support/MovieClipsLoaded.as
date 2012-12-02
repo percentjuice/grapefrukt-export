@@ -37,7 +37,7 @@ package com.grapefrukt.support
 			
 			var assetRequest : Class = event.args[0];
 			var loader : Loader = event.args[1];
-			var frameRate : int = loader.contentLoaderInfo.frameRate;
+			var frameRate : Number = loader.contentLoaderInfo.frameRate;
 
 			classToFramerateMap ||= new Dictionary();
 			classToFramerateMap [assetRequest] = frameRate;
@@ -56,7 +56,7 @@ package com.grapefrukt.support
 			return EmbeddedMovieClipLoader.loaderContext.applicationDomain.getDefinition(name) as Class;
 		}
 		
-		public function getFrameRateForClass(movieClass:Class):int
+		public function getFrameRateForClass(movieClass:Class):Number
 		{
 			return classToFramerateMap[movieClass];
 		}

@@ -25,6 +25,7 @@ package com.grapefrukt.exporter.simple
 		[Before]
 		public function setup() : void
 		{
+			var frameRate:Number = getFrameRateForClass(EmbeddedMovieClips.TESTMC_ROBOT);
 			export = new FTCSimpleExport(this, "robot");
 		}
 		
@@ -32,9 +33,8 @@ package com.grapefrukt.exporter.simple
 		public function should_export_one_asset_for_each_timeline_movieclip() : void
 		{
 			var loadedClass:Class = getLoadedClassNamed(CLASSNAME_FROM_FLA);		
-			var frameRate:int = getFrameRateForClass(EmbeddedMovieClips.TESTMC_ROBOT);
 			
-			AnimationExtractor.extract(export.animations, new loadedClass(), null, frameRate);
+			AnimationExtractor.extract(export.animations, new loadedClass(), null);
 			var textureSheetRetina : TextureSheet = TextureExtractor.extract(new loadedClass(), null, false, null, true, SCALE_RETINA, FTCBitmapTexture, COCOS_RETINA_EXT);
 			var textureSheetNonRetina : TextureSheet = TextureExtractor.extract(new loadedClass(), null, false, null, true, SCALE_NON_RETINA);
 

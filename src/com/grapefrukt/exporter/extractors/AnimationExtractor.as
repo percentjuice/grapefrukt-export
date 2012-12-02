@@ -52,7 +52,7 @@ or implied, of grapefrukt games.
 		 * @param	target	The MovieClip to extract from
 		 * @param	ignore	A list of children to ignore (Array of strings)
 		 */
-		public static function extract(list:AnimationCollection, target:MovieClip, ignore:Array = null, frameRate:int = 0, convertPixelsToPoints:Boolean=true, scaleFactor:Number=1):void {
+		public static function extract(list:AnimationCollection, target:MovieClip, ignore:Array = null, convertPixelsToPoints:Boolean=true, scaleFactor:Number=1):void {
 			Logger.log("AnimationExtractor", "extracting", target.toString());
 			var fragments:Vector.<AnimationFragment> = getFragments(target);
 			
@@ -60,7 +60,7 @@ or implied, of grapefrukt games.
 			ChildFinder.filter(target, parts, ignore);
 			
 			for each(var fragment:AnimationFragment in fragments) {
-				list.add(getAnimation(target, fragment, parts, frameRate || Settings.defaultFramerate, convertPixelsToPoints, scaleFactor));
+				list.add(getAnimation(target, fragment, parts, convertPixelsToPoints, scaleFactor));
 			}
 		}
 		
@@ -106,14 +106,14 @@ or implied, of grapefrukt games.
 		}
 		
 		
-		private static function getAnimation(mc:MovieClip, fragment:AnimationFragment, parts:Vector.<Child>, frameRate:int, convertPixelsToPoints:Boolean, scaleFactor:Number):Animation {
+		private static function getAnimation(mc:MovieClip, fragment:AnimationFragment, parts:Vector.<Child>, convertPixelsToPoints:Boolean, scaleFactor:Number):Animation {
 			var loopAt:int = -1;
 			
 			var conversionFactor:Number = 1;			
 			if (convertPixelsToPoints) conversionFactor = Settings.conversionFactor;			
 			
 			if ( fragment.loops ) loopAt = fragment.totalFrameCount - fragment.loopFrameCount - 1;
-			var animation:Animation = new Animation(fragment.name, fragment.totalFrameCount, frameRate, loopAt, parts);
+			var animation:Animation = new Animation(fragment.name, fragment.totalFrameCount, loopAt, parts);
 			
 			for each(var part:Child in parts) {
 				for (var frame:int = fragment.startFrame; frame <= fragment.endFrame; frame++){

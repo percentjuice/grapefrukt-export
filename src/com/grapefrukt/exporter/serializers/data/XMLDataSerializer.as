@@ -142,6 +142,7 @@ package com.grapefrukt.exporter.serializers.data
 		{
 			collection.sort();
 			var xml : XML = <Animations></Animations>;
+			xml.@frameRate = collection.frameRate || Settings.defaultFramerate;
 			for (var i : int = 0; i < collection.size; i++)
 			{
 				xml.appendChild(_serialize(collection.getAtIndex(i)));
@@ -154,7 +155,6 @@ package com.grapefrukt.exporter.serializers.data
 			var xml : XML = <Animation></Animation>;
 			xml.@name = animation.name;
 			xml.@frameCount = animation.frameCount;
-			xml.@framerate = animation.framerate;
 			if (animation.loopAt != -1) xml.@loopAt = animation.loopAt;
 			if (animation.mask) xml.@mask = animation.mask;
 
