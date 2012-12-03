@@ -192,12 +192,30 @@ package com.grapefrukt.exporter.serializers.data
 		{
 			var xml : XML = <Frame></Frame>;
 
-			if (!equal(frame.x, 0, Settings.positionPrecision)) xml.@x = frame.x.toFixed(Settings.positionPrecision);
-			if (!equal(frame.y, 0, Settings.positionPrecision)) xml.@y = frame.y.toFixed(Settings.positionPrecision);
-			if (!equal(frame.scaleX, 1, Settings.scalePrecision)) xml.@scaleX = frame.scaleX.toFixed(Settings.scalePrecision);
-			if (!equal(frame.scaleY, 1, Settings.scalePrecision)) xml.@scaleY = frame.scaleY.toFixed(Settings.scalePrecision);
-			if (!equal(frame.rotation, 0, Settings.rotationPrecision)) xml.@rotation = frame.rotation.toFixed(Settings.rotationPrecision);
-			if (!equal(frame.alpha, 1, Settings.alphaPrecision)) xml.@alpha = frame.alpha.toFixed(Settings.alphaPrecision);
+			if (!equal(frame.x, 0, Settings.positionPrecision)) {
+                xml.@x = frame.x.toFixed(Settings.positionPrecision);
+            }
+			if (!equal(frame.y, 0, Settings.positionPrecision)) {
+                xml.@y = frame.y.toFixed(Settings.positionPrecision);
+            }
+			if (!equal(frame.scaleX, 1, Settings.scalePrecision)) {
+                xml.@scaleX = frame.scaleX.toFixed(Settings.scalePrecision);
+            }
+			if (!equal(frame.scaleY, 1, Settings.scalePrecision)) {
+                xml.@scaleY = frame.scaleY.toFixed(Settings.scalePrecision);
+            }
+			if (!equal(frame.rotation, 0, Settings.rotationPrecision)) {
+                xml.@rotation = frame.rotation.toFixed(Settings.rotationPrecision);
+            }
+            if (!equal(frame.skewX, 0, Settings.rotationPrecision)) {
+                xml.@skewX = frame.rotation.toFixed(Settings.rotationPrecision);
+            }
+            if (!equal(frame.skewY, 0, Settings.rotationPrecision)) {
+                xml.@skewY = frame.rotation.toFixed(Settings.rotationPrecision);
+            }
+			if (!equal(frame.alpha, 1, Settings.alphaPrecision)) {
+                xml.@alpha = frame.alpha.toFixed(Settings.alphaPrecision);
+            }
 
 			return xml;
 		}
