@@ -29,8 +29,6 @@ package com.grapefrukt.exporter.simple
 {
 	import com.grapefrukt.exporter.collections.*;
 	import com.grapefrukt.exporter.debug.*;
-	import com.grapefrukt.exporter.events.FunctionQueueEvent;
-	import com.grapefrukt.exporter.settings.Settings;
 	import com.grapefrukt.exporter.textures.*;
 
 	import flash.display.DisplayObjectContainer;
@@ -53,15 +51,9 @@ package com.grapefrukt.exporter.simple
 			super(root, id);
 
 			_frameRate = frameRate;
-			_texturesArt = new TextureSheetCollection;
-			_texturesFile = new TextureSheetCollection;
+			_texturesArt = new TextureSheetCollection();
+			_texturesFile = new TextureSheetCollection();
 			_texture_exporter = new FTCTextureExporter(_queue, _image_serializer, _file_serializer);
-		}
-
-		public function exportWithCompleteHandler(eventCompleteHandler : Function, autoOutput : Boolean = false) : void
-		{
-			_queue.addEventListener(FunctionQueueEvent.COMPLETE, eventCompleteHandler, false, 0, true);
-			export(autoOutput);
 		}
 
 		/**
@@ -160,23 +152,6 @@ package com.grapefrukt.exporter.simple
 			}
 		}
 
-		public override function get textures() : TextureSheetCollection
-		{
-			var combinedCollection : TextureSheetCollection = new TextureSheetCollection();
-
-			var i : int = 0;
-			for (;i < _texturesArt.size; i++)
-			{
-				combinedCollection.add(_texturesArt.getAtIndex(i));
-			}
-			for (i = 0; i < _texturesFile.size; i++)
-			{
-				combinedCollection.add(_texturesFile.getAtIndex(i));
-			}
-
-			return combinedCollection;
-		}
-
 		public function get texturesArt() : TextureSheetCollection
 		{
 			return _texturesArt;
@@ -185,6 +160,11 @@ package com.grapefrukt.exporter.simple
 		public function get texturesFile() : TextureSheetCollection
 		{
 			return _texturesFile;
+		}
+
+		public override function get textures() : TextureSheetCollection
+		{
+			throw new Error("FTCSimpleExport separates textures intended for the sheets xml from those in animations xml.  use texturesArt or texturesFile or both.");
 		}
 	}
 }

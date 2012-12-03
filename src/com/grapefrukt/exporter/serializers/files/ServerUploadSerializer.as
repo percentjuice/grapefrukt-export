@@ -40,6 +40,9 @@ package com.grapefrukt.exporter.serializers.files {
 		}
 		
 		private function handleUploadComplete(e:Event):void {
+			URLLoader(e.target).removeEventListener(Event.COMPLETE, handleUploadComplete);
+			URLLoader(e.target).removeEventListener(ProgressEvent.PROGRESS, handleProgress);
+			
 			Logger.log("ServerUploadSerializer", "upload complete");
 			Logger.log("ServerUploadSerializer", "server said", e.target.data);
 		}

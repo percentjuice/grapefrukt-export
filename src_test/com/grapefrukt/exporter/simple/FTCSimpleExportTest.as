@@ -26,7 +26,7 @@ package com.grapefrukt.exporter.simple
 		public function setup() : void
 		{
 			var frameRate:Number = getFrameRateForClass(EmbeddedMovieClips.TESTMC_ROBOT);
-			export = new FTCSimpleExport(this, "robot");
+			export = new FTCSimpleExport(this, "robot", frameRate);
 		}
 		
 		[Test]

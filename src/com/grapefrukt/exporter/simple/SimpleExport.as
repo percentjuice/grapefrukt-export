@@ -93,8 +93,8 @@ package com.grapefrukt.exporter.simple
 			
 			
 			if(root){
-				_queue.addEventListener(FunctionQueueEvent.CHANGE, 		handleQueueChange);
-				_queue.addEventListener(FunctionQueueEvent.COMPLETE, 	handleQueueComplete);
+				_queue.addEventListener(FunctionQueueEvent.CHANGE, handleQueueChange);
+				_queue.addEventListener(FunctionQueueEvent.COMPLETE, handleQueueComplete);
 				
 				_gui = new SimpleExportGui;
 				_gui.addEventListener(MouseEvent.CLICK, handleClickGui);
@@ -106,6 +106,12 @@ package com.grapefrukt.exporter.simple
 				
 				root.addChild(_gui);
 			}
+		}
+
+		public function exportWithCompleteHandler(eventCompleteHandler : Function, autoOutput : Boolean = false) : void
+		{
+			_queue.addEventListener(FunctionQueueEvent.COMPLETE, eventCompleteHandler, false, 0, true);
+			export(autoOutput);
 		}
 		
 		/**
@@ -132,12 +138,16 @@ package com.grapefrukt.exporter.simple
 		}
 		
 		private function handleQueueComplete(e:FunctionQueueEvent):void {
+			_queue.removeEventListener(FunctionQueueEvent.CHANGE, handleQueueChange);
+			_queue.removeEventListener(FunctionQueueEvent.COMPLETE, handleQueueComplete);
+		
 			_gui.setProgress(1);
 			_gui.setText("click to output!");
 			_gui.buttonMode = true;
 		}
 		
 		private function handleClickGui(e:MouseEvent):void {
+			_gui.removeEventListener(MouseEvent.CLICK, handleClickGui);
 			if(_queue.length == 0 && _queue.peakLength > 0) output();
 		}
 		

@@ -1,7 +1,7 @@
 package
 {
 	import com.grapefrukt.exporter.extractors.AnimationExtractorTest;
-	import com.grapefrukt.exporter.simple.FTCSimpleExportTest;
+	import com.grapefrukt.exporter.simple.*;
 
 	import flash.display.Sprite;
 
@@ -10,6 +10,7 @@ package
 	public class FTCTestSuite extends Sprite
 	{ 
 		public var animationExtractorTest:AnimationExtractorTest;
-		public var simpleExportTest:FTCSimpleExportTest;
+		public var ftcSimpleExportTest:FTCSimpleExportTest;
+		public var simpleExportTest:SimpleExportTest;
 	}
 }

@@ -74,7 +74,7 @@ package com.grapefrukt.exporter.debug
 			
 			_text.htmlText = "ConsoleLog - grapefrukt asset exporter - " + new Date();
 			
-			Logger.dispatcher.addEventListener(	LogEvent.LOG, handleLog);
+			Logger.dispatcher.addEventListener(	LogEvent.LOG, handleLog, false, 0, true);
 		}
 		
 		private function handleLog(e:LogEvent):void {

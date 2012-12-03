@@ -73,6 +73,7 @@ package com.grapefrukt.exporter.misc {
 				_queue.shift()();
 				dispatchEvent(new FunctionQueueEvent(FunctionQueueEvent.CHANGE));
 			} else {
+				_queue_timer.removeEventListener(TimerEvent.TIMER, handleQueueTimer);
 				_queue_timer.stop();
 				dispatchEvent(new FunctionQueueEvent(FunctionQueueEvent.COMPLETE));
 			}

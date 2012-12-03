@@ -60,6 +60,7 @@ package com.grapefrukt.exporter.serializers.files {
 		}
 		
 		private function handleComplete(e:Event):void {
+			FileReference(e.target).removeEventListener(Event.COMPLETE, handleComplete);
 			fscommand("quit");
 		}
 		

@@ -102,7 +102,7 @@ package com.grapefrukt.exporter.misc
 			}
 			tmpRects = rects;
 			tmpMethod = method;
-			enterFrameProvider.addEventListener(Event.ENTER_FRAME, insertBulkWorker);
+			enterFrameProvider.addEventListener(Event.ENTER_FRAME, insertBulkWorker, false, 0, true);
 			insertBulkWorker(null);
 		}
 		
