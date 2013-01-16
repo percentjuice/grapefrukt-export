@@ -43,17 +43,30 @@ package com.grapefrukt.exporter.animations {
 		private var _scaleY		:Number;
 		private var _rotation	:Number;
 		private var _alpha		:Number;
+        private var _skewX      :Number;
+        private var _skewY      :Number;
 		private var _scale_factor:Number = 1;
 		
 		
-		public function AnimationFrame(visible:Boolean, x:Number = 0, y:Number = 0, scaleX:Number = 0, scaleY:Number = 0, rotation:Number = 0, alpha:Number = 0, scaleFactor:Number = 1) {
-			_visible = visible;
-			_x = x;
-			_y = y;
-			_scaleY = scaleY;
-			_scaleX = scaleX;
-			_rotation = rotation;
-			_alpha = alpha;
+		public function AnimationFrame( visible:Boolean
+                                      , x:Number           = 0
+                                      , y:Number           = 0
+                                      , scaleX:Number      = 0
+                                      , scaleY:Number      = 0
+                                      , rotation:Number    = 0
+                                      , alpha:Number       = 0
+                                      , skewX:Number       = 0
+                                      , skewY:Number       = 0
+                                      , scaleFactor:Number = 1) {
+			_visible      = visible;
+			_x            = x;
+			_y            = y;
+			_scaleY       = scaleY;
+			_scaleX       = scaleX;
+			_rotation     = rotation;
+			_alpha        = alpha;
+            _skewX        = skewX;
+            _skewY        = skewY;
 			_scale_factor = scaleFactor;
 			
 			if (_alpha == 0) _visible = false;
@@ -66,9 +79,9 @@ package com.grapefrukt.exporter.animations {
 		public function get scaleX():Number { return _scaleX; }
 		public function get y():Number { return _y * _scale_factor; }
 		public function get x():Number { return _x * _scale_factor; }
-		public function get visible():Boolean { return _visible; }
-	
-		
-	}
+        public function get skewX():Number { return _skewX; }
+        public function get skewY():Number { return _skewY; }
+        public function get visible():Boolean { return _visible; }
+    }
 
 }

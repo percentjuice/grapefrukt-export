@@ -26,7 +26,7 @@ authors and should not be interpreted as representing official policies, either 
 or implied, of grapefrukt games.
 */
 
-﻿package com.grapefrukt.exporter.extractors
+package com.grapefrukt.exporter.extractors
 {
 	import com.grapefrukt.exporter.animations.Animation;
 	import com.grapefrukt.exporter.animations.AnimationFrame;
@@ -119,9 +119,11 @@ or implied, of grapefrukt games.
 				for (var frame:int = fragment.startFrame; frame <= fragment.endFrame; frame++){
 					mc.gotoAndStop(frame);
 					if (mc[part.name]) {
+                        var skewX:Number = mc[part.name].transform.matrix.c;
+                        var skewY:Number = mc[part.name].transform.matrix.b;
 						var partX:Number = mc[part.name].x * conversionFactor;
 						var partY:Number = mc[part.name].y * conversionFactor;
-						animation.setFrame(part.name, frame - fragment.startFrame, new AnimationFrame(true, partX, partY, mc[part.name].scaleX, mc[part.name].scaleY, mc[part.name].rotation, mc[part.name].alpha, scaleFactor));
+						animation.setFrame(part.name, frame - fragment.startFrame, new AnimationFrame(true, partX, partY, mc[part.name].scaleX, mc[part.name].scaleY, mc[part.name].rotation, mc[part.name].alpha, skewX, skewY, scaleFactor));
 					} else {
 						animation.setFrame(part.name, frame - fragment.startFrame, new AnimationFrame(false));
 					}
